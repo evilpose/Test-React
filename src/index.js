@@ -1,52 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-// import App from './App';
-// import * as serviceWorker from './serviceWorker';
 
-// ReactDOM.render(<App />, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();
-//上面这句话的意思是 如果你有内容需要缓存，就会直接缓存
-
-// function clock(){
-//   let time = new Date().toLocaleTimeString()
-//   let element = (
-    // <div>
-    //   <h1>现在的时间是{time}</h1>
-    //   <h2>FU BIAO TI</h2>
-    // </div>
-//   )
-
-//   ReactDOM.render(element, document.querySelector('#root'))
-// }
-
-// clock()
-
-// setInterval(() => {
-//   clock()
-// }, 1000);
-
-// react 函数式组件
-function Clock(props) {
+// 函数式组件
+// 一般是用来写不用交互的，静态的
+function Childcom(props) {
+  console.log(props)
+  let title = <h1>我是副标题</h1>
+  let weather = props.weather
+  let isGo = weather === '下雨' ? '不出门' : '出门'
   return (
     <div>
-      <h1>现在的时间是{props.date.toLocaleTimeString()}</h1>
-      <h2>FU BIAO TI</h2>
+      <h1>函数式组件</h1>
+      {title}
+      <div>
+        是否出门？
+        <span>{isGo}</span>
+      </div>
     </div>
   )
 }
 
-function run() {
-  ReactDOM.render(
-    <Clock date={new Date()}/>,
-    document.querySelector('#root')
-  )
+// 类组件定义
+class HelloWorld extends React.Component{
+  render(){
+    return (
+      <div>
+        <Childcom weather='出太阳'/>
+        <h1>类组件定义{this.props.name}</h1>
+      </div>
+    )
+  }
 }
 
-setInterval(() => {
-  run()
-}, 1000);
+ReactDOM.render(
+  <HelloWorld name='钢铁侠'/>,
+  document.querySelector('#root')
+)

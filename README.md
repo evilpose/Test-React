@@ -1,68 +1,27 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+JSX的优点：
+1 JSX执行更快，编译为Javascript代码时进行优化。
+2 类型更安全，编译的过程如果出错就不能编译u，及时发现错误。
+3 JSX编写模板更加简单快速。（但不能跟vue相比）
 
-## Available Scripts
+注意：
+1 JSX 必须要有根节点。
+2 正常的普通HTML元素要小写，如果是大写，默认认为是组件。
 
-In the project directory, you can run:
+JSX的表达式
+1 由HTML元素构成
+2 中间如果需要插入变量用{}
+3 {}中间可以使用表达式
+4 {}中间表达式中可以使用JSX对象
+5 属性和HTML内容一样都是可以用{}来插入内容
 
-### `npm start`
+JSX_Stye样式
+1 class，style 中，不可以存在多个clss属性
+2 style样式中，如果存在多个单词的组合，第二个单词开始，首字母大写，或者用引号引起来
+3 多个类共存的操作
+4 注释 {/* */}
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+React组件
+函数式组件和类组件的区域和使用，函数式比较简单，一般用于静态没有交互事件内容的组件页面。类组件，一般又称为动态组件，那么一般都会有交互或者数据修改的操作。
+1 函数式组件
+2 类组件
+3 复合组件： 组件中又有其他的组件，复合组件中既可以有里类组件，又可以有函数组件。
