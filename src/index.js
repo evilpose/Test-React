@@ -1,38 +1,54 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './01props.css'
 
-// 函数式组件
-// 一般是用来写不用交互的，静态的
-function Childcom(props) {
-  console.log(props)
-  let title = <h1>我是副标题</h1>
-  let weather = props.weather
-  let isGo = weather === '下雨' ? '不出门' : '出门'
-  return (
-    <div>
-      <h1>函数式组件</h1>
-      {title}
+// 在父元素中使用 state 去控制子元素 props 的从而达到父元素数据传递给子元素
+
+class ParentCom extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      isActive: true
+    }
+  }
+
+  render(){
+    return(
       <div>
-        是否出门？
-        <span>{isGo}</span>
+        <button onClick={this.changShow.bind(this)}>控制子元素显示</button>
+        <ChildCom isActive={this.state.isActive}/>
       </div>
-    </div>
-  )
+    )
+  }
+
+  changShow(){
+    this.setState({
+      isActive: !this.state.isActive
+    })
+  }
 }
 
-// 类组件定义
-class HelloWorld extends React.Component{
+class ChildCom extends React.Component{
+  constructor(props){
+    super(props)
+  }
   render(){
-    return (
-      <div>
-        <Childcom weather='出太阳'/>
-        <h1>类组件定义{this.props.name}</h1>
+    let StrClass = null
+    if (this.props.isActive){
+      StrClass = ' active'
+    } else{
+      StrClass = ''
+    }
+
+    return(
+      <div className={'content' + StrClass}>
+        <h1>我是子元素</h1>
       </div>
     )
   }
 }
 
 ReactDOM.render(
-  <HelloWorld name='钢铁侠'/>,
+  <ParentCom />,
   document.querySelector('#root')
 )
