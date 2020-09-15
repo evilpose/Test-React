@@ -1,54 +1,51 @@
-import React from 'react';
+import React, { Component, Children } from 'react';
 import ReactDOM from 'react-dom';
-import './01props.css'
 
-// 在父元素中使用 state 去控制子元素 props 的从而达到父元素数据传递给子元素
-
-class ParentCom extends React.Component{
+// 子传父
+class Clock extends Component{
   constructor(props){
     super(props)
     this.state = {
-      isActive: true
+      children: null
     }
   }
-
+  setData = (data) => {
+    this.setState({
+      children: data
+    })
+  }
   render(){
-    return(
+    return (
       <div>
-        <button onClick={this.changShow.bind(this)}>控制子元素显示</button>
-        <ChildCom isActive={this.state.isActive}/>
+        <h1>子元素传递给父元素的数据：{this.state.children}</h1>
+        <ChildCom setChildData = {this.setData}/>
       </div>
     )
-  }
-
-  changShow(){
-    this.setState({
-      isActive: !this.state.isActive
-    })
   }
 }
 
-class ChildCom extends React.Component{
+class ChildCom extends Component{
   constructor(props){
     super(props)
+    this.state = {
+      msg: 'helloworld'
+    }
   }
   render(){
-    let StrClass = null
-    if (this.props.isActive){
-      StrClass = ' active'
-    } else{
-      StrClass = ''
-    }
-
     return(
-      <div className={'content' + StrClass}>
-        <h1>我是子元素</h1>
+      <div>
+        <button onClick={this.sendData}>传递helloworld给父元素</button>
+        <button onClick={()=>{this.props.setChildData(this.state.msg)}}>传递helloworld给父元素</button>
       </div>
     )
+  }
+  sendData = () => {
+    // 将子元素传递到父元素，实际就是调用父元素传递进来的父元素函数
+    this.props.setChildData(this.state.msg)
   }
 }
 
 ReactDOM.render(
-  <ParentCom />,
+  <Clock />,
   document.querySelector('#root')
 )
